@@ -24,21 +24,11 @@ public class Insect {
     }
     public void hibernate()
     {
-        if (!isSleeping) {
         isSleeping = true;
-        System.out.println("The insect fell asleep");
-        } else {
-            System.out.println("The insect is already asleep");
-        }
     }
     public void wakeUp()
     {
-        if (isDangerous){
         isSleeping = false;
-        System.out.println("The insect has woken up");
-        } else {
-            System.out.println("The insect is awake");
-        }
     }
     public static void main (String[] args) {
         int numberOfInsect = 4;
@@ -48,9 +38,9 @@ public class Insect {
         arrayInsects[2] = getInstance();
         arrayInsects[3] = getInstance();
 
-        for (int i = 0; i < numberOfInsect; i++)
+        for (Insect objectToPrint : arrayInsects)
         {
-            System.out.println(arrayInsects[i].toString());
+            System.out.println(objectToPrint);
         }
     }
 }
