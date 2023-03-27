@@ -40,8 +40,8 @@ public class InsectManager {
         Insect MosquitoSecond = new Mosquito("Artur", 6, true, true, true);
         Insect HornetFirst = new Hornet("Locky", 2, true, false, true);
         Insect HornetSecond = new Hornet("Herlok", 4, true, true, false);
-        Insect ButterflyFirst = new Butterfly("Filuna", 8, true, false, false);
-        Insect ButterflySecond = new Butterfly("Dunar", 6, true, false, true);
+        Insect ButterflyFirst = new Butterfly("Filename", 8, true, false, false);
+        Insect ButterflySecond = new Butterfly("Dinar", 6, true, false, true);
         Insect MantisFirst= new Mantis("Olena", 8, false, true, false);
         Insect MantisSecond = new Mantis("Zoro", 2, false, true, true);
 
@@ -58,11 +58,11 @@ public class InsectManager {
         System.out.println();
         Manager.testAbstractMethods();
 
-        System.out.println("Printing all iinsects that are dangereous:");
+        System.out.println("Printing all insects that are dangerous:");
         for (Insect ins : Manager.findAllDangerous()) {
             System.out.println(ins);
         }
-        System.out.println("\nPrinting all iinsects that have more than 4 legs : ");
+        System.out.println("\nPrinting all insects that have more than 4 legs : ");
         for (Insect ins : Manager.findAllWithNumberOfLegsGreaterThan(4)) {
             System.out.println(ins);
         }
