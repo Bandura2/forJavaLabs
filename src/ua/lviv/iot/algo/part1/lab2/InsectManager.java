@@ -36,34 +36,34 @@ public class InsectManager {
     }
     public static void main(String[] args)
     {
-        Insect MosquitoFirst = new Mosquito("Vasya", 4,true, false, false);
-        Insect MosquitoSecond = new Mosquito("Artur", 6, true, true, true);
-        Insect HornetFirst = new Hornet("Locky", 2, true, false, true);
-        Insect HornetSecond = new Hornet("Herlok", 4, true, true, false);
-        Insect ButterflyFirst = new Butterfly("Filename", 8, true, false, false);
-        Insect ButterflySecond = new Butterfly("Dinar", 6, true, false, true);
-        Insect MantisFirst= new Mantis("Olena", 8, false, true, false);
-        Insect MantisSecond = new Mantis("Zoro", 2, false, true, true);
+        Insect mosquitoFirst = new Mosquito("Vasya", 4,true, false, false);
+        Insect mosquitoSecond = new Mosquito("Artur", 6, true, true, true);
+        Insect hornetFirst = new Hornet("Locky", 2, true, false, true);
+        Insect hornetSecond = new Hornet("Herlok", 4, true, true, false);
+        Insect butterflyFirst = new Butterfly("Filename", 8, true, false, false);
+        Insect butterflySecond = new Butterfly("Dinar", 6, true, false, true);
+        Insect mantisFirst= new Mantis("Olena", 8, false, true, false);
+        Insect mantisSecond = new Mantis("Zoro", 2, false, true, true);
 
-        InsectManager Manager = new InsectManager();
-        Manager.addInsect(MosquitoFirst);
-        Manager.addInsect(MosquitoSecond);
-        Manager.addInsect(HornetFirst);
-        Manager.addInsect(HornetSecond);
-        Manager.addInsect(ButterflyFirst);
-        Manager.addInsect(ButterflySecond);
-        Manager.addInsect(MantisFirst);
-        Manager.addInsect(MantisSecond);
+        InsectManager manager = new InsectManager();
+        manager.addInsect(mosquitoFirst);
+        manager.addInsect(mosquitoSecond);
+        manager.addInsect(hornetFirst);
+        manager.addInsect(hornetSecond);
+        manager.addInsect(butterflyFirst);
+        manager.addInsect(butterflySecond);
+        manager.addInsect(mantisFirst);
+        manager.addInsect(mantisSecond);
 
         System.out.println();
-        Manager.testAbstractMethods();
+        manager.testAbstractMethods();
 
         System.out.println("Printing all insects that are dangerous:");
-        for (Insect ins : Manager.findAllDangerous()) {
+        for (Insect ins : manager.findAllDangerous()) {
             System.out.println(ins);
         }
         System.out.println("\nPrinting all insects that have more than 4 legs : ");
-        for (Insect ins : Manager.findAllWithNumberOfLegsGreaterThan(4)) {
+        for (Insect ins : manager.findAllWithNumberOfLegsGreaterThan(4)) {
             System.out.println(ins);
         }
     }
