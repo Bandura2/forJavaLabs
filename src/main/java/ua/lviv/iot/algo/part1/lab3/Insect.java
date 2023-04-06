@@ -1,12 +1,14 @@
-package ua.lviv.iot.algo.part1.lab2;
+package ua.lviv.iot.algo.part1.lab3;
 
-import lombok.*;
-
-@NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 @AllArgsConstructor
-@Setter
 @Getter
-@ToString(of = {"name", "numberOfLegs", "hasWings", "isDangerous", "isSleeping"})
+@Setter
+@ToString(of = {"name", "numberOfLegs", "hasWings",
+                "isDangerous", "isSleeping"})
 
 public abstract class Insect {
     private String name;
