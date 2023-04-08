@@ -17,6 +17,20 @@ class ButterflyTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
+    public void testButterflyIsPoisonous() {
+        Assertions.assertFalse(butterfly.isPoisonous());
+    }
+    @Test
+    public void testButterflyCanHibernate() {
+        butterfly.hibernate();
+        Assertions.assertTrue(butterfly.isSleeping());
+    }
+    @Test
+    public void testButterflyIsWakeUp() {
+        butterfly.wakeUp();
+        Assertions.assertFalse(butterfly.isSleeping());
+    }
+    @Test
     public void testButterflyCanNotInjectPoison() {
         Assertions.assertFalse(butterfly.canInjectPoison());
     }

@@ -17,6 +17,20 @@ class HornetTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
+    public void testHornetIsPoisonous() {
+        Assertions.assertTrue(hornet.isPoisonous());
+    }
+    @Test
+    public void testHornetCanHibernate() {
+        hornet.hibernate();
+        Assertions.assertTrue(hornet.isSleeping());
+    }
+    @Test
+    public void testHornetIsWakeUp() {
+        hornet.wakeUp();
+        Assertions.assertFalse(hornet.isSleeping());
+    }
+    @Test
     public void testHornetCantInjectPoison() {
         Assertions.assertTrue(hornet.canInjectPoison());
     }

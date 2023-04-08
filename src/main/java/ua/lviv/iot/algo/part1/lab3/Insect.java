@@ -9,7 +9,6 @@ import lombok.ToString;
 @Setter
 @ToString(of = {"name", "numberOfLegs", "hasWings",
                 "isDangerous", "isSleeping"})
-
 public abstract class Insect {
     private String name;
     private int numberOfLegs;

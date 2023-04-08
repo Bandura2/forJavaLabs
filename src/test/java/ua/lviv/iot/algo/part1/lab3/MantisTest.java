@@ -17,6 +17,20 @@ class MantisTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
+    public void testMantisIsPoisonous() {
+        Assertions.assertFalse(mantis.isPoisonous());
+    }
+    @Test
+    public void testMantisCanHibernate() {
+        mantis.hibernate();
+        Assertions.assertTrue(mantis.isSleeping());
+    }
+    @Test
+    public void testMantisIsWakeUp() {
+        mantis.wakeUp();
+        Assertions.assertFalse(mantis.isSleeping());
+    }
+    @Test
     public void testMantisCanNotInjectPoison() {
         Assertions.assertFalse(mantis.canInjectPoison());
     }

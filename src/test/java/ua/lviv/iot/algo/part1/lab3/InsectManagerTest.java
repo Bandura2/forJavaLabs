@@ -58,7 +58,7 @@ class InsectManagerTest {
         expected.add(mosquito);
         expected.add(butterfly);
 
-        results = manager.findAllWithNumberOfLegsGreaterThan(6);
+        results = manager.findAllWithNumOfLegsGreaterThan(6);
         Assertions.assertEquals(results, expected);
     }
     @Test
@@ -68,12 +68,12 @@ class InsectManagerTest {
         secondManager.addInsect(butterfly);
         secondManager.addInsect(mantis);
 
-        results = manager.findAllWithNumberOfLegsGreaterThan(60);
+        results = manager.findAllWithNumOfLegsGreaterThan(60);
         Assertions.assertEquals(results, expected);
     }
     @Test
     public void testFindAllInsectsWithNumberOfLegsGreaterThanSixInEmptyList() {
-        results = secondManager.findAllWithNumberOfLegsGreaterThan(6);
+        results = secondManager.findAllWithNumOfLegsGreaterThan(6);
         Assertions.assertEquals(results, expected);
     }
 }

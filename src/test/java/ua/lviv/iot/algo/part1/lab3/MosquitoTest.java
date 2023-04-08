@@ -17,6 +17,20 @@ class MosquitoTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
+    public void testMosquitoIsPoisonous() {
+        Assertions.assertFalse(mosquito.isPoisonous());
+    }
+    @Test
+    public void testMosquitoCanHibernate() {
+        mosquito.hibernate();
+        Assertions.assertTrue(mosquito.isSleeping());
+    }
+    @Test
+    public void testMosquitoIsWakeUp() {
+        mosquito.wakeUp();
+        Assertions.assertFalse(mosquito.isSleeping());
+    }
+    @Test
     public void testMosquitoCanNotInjectPoison() {
         Assertions.assertFalse(mosquito.canInjectPoison());
     }
