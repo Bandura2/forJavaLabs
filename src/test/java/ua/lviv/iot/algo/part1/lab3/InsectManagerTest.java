@@ -3,77 +3,73 @@ package ua.lviv.iot.algo.part1.lab3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.LinkedList;
+
 import java.util.List;
+
 class InsectManagerTest {
-    InsectManager manager, secondManager;
-    List<Insect> expected, results;
-    Insect mosquito, hornet, butterfly, mantis;
+    private InsectManager manager, managerWithDangerousInsects, managerWithoutDangerousInsects, emptyManager;
+
     @BeforeEach
     public void setUp() {
-        mosquito = new Mosquito("Mosquito", 8, true, false, true);
-        hornet = new Hornet("Hornet", 6, true, true, false);
-        butterfly = new Butterfly("Butterfly", 8, true, false, true);
-        mantis = new Mantis("Mantis", 6, false, true, false);
 
         manager = new InsectManager();
-        manager.addInsect(mosquito);
-        manager.addInsect(hornet);
-        manager.addInsect(butterfly);
-        manager.addInsect(mantis);
+        managerWithDangerousInsects = new InsectManager();
+        managerWithoutDangerousInsects = new InsectManager();
 
-        secondManager = new InsectManager();
-        expected = new LinkedList<>();
+        managerWithDangerousInsects.addInsect(new Hornet("Hornet", 6, true, true, false));
+        managerWithDangerousInsects.addInsect(new Mantis("Mantis", 6, false, true, false));
+        managerWithoutDangerousInsects.addInsect(new Mosquito("Mosquito", 8, true, false, true));
+        managerWithoutDangerousInsects.addInsect(new Butterfly("Butterfly", 8, true, false, true));
+
+        manager.addInsects(managerWithDangerousInsects.getInsects());
+        manager.addInsects(managerWithoutDangerousInsects.getInsects());
     }
+
     @Test
     public void testFindAllDangerousInsects() {
-        expected.add(hornet);
-        expected.add(mantis);
 
-        results = manager.findAllDangerous();
-        Assertions.assertEquals(results, expected);
+        List<Insect> results = manager.findAll(true);
+        Assertions.assertEquals(2, results.size());
+        Assertions.assertEquals(managerWithDangerousInsects.getInsects(), results);
     }
+
     @Test
-    public void testFindAllIsNotDangerousInsects() {
-        mosquito.setDangerous(false);
-        hornet.setDangerous(false);
-        butterfly.setDangerous(false);
-        mantis.setDangerous(false);
+    public void testFindAllNotDangerous() {
 
-        secondManager.addInsect(mosquito);
-        secondManager.addInsect(hornet);
-        secondManager.addInsect(butterfly);
-        secondManager.addInsect(mantis);
-
-        results = secondManager.findAllDangerous();
-        Assertions.assertEquals(results, expected);
+        List<Insect> results = manager.findAll(false);
+        Assertions.assertEquals(managerWithoutDangerousInsects.getInsects(), results);
     }
+
     @Test
     public void testFindAllIsNotDangerousInsectsInEmptyList() {
-        results = secondManager.findAllDangerous();
-        Assertions.assertEquals(results, expected);
+        Assertions.assertEquals(0, new InsectManager().findAll(false).size());
     }
+
     @Test
     public void testFindAllInsectsWithNumberOfLegsGreaterThanSix() {
-        expected.add(mosquito);
-        expected.add(butterfly);
 
-        results = manager.findAllWithNumOfLegsGreaterThan(6);
-        Assertions.assertEquals(results, expected);
+        List<Insect> results = manager.findAllWithNumOfLegsGreaterThan(6);
+        Assertions.assertEquals(results.size(), 2);
+
+        for (var insect : results) {
+            Assertions.assertTrue(insect.getNumberOfLegs() > 6);
+        }
     }
+
     @Test
-    public void testFindAllInsectsWithNumberOfLegsGreaterThanSixty() {
-        secondManager.addInsect(mosquito);
-        secondManager.addInsect(hornet);
-        secondManager.addInsect(butterfly);
-        secondManager.addInsect(mantis);
+    public void testFindAllInsectsByLegsCountReturnsEmptyList() {
 
-        results = manager.findAllWithNumOfLegsGreaterThan(60);
-        Assertions.assertEquals(results, expected);
+        List<Insect> results = manager.findAllWithNumOfLegsGreaterThan(60);
+        Assertions.assertEquals(results.size(), 0);
+
+        for (var insect : results) {
+            Assertions.assertNull(insect);
+        }
     }
+
     @Test
     public void testFindAllInsectsWithNumberOfLegsGreaterThanSixInEmptyList() {
-        results = secondManager.findAllWithNumOfLegsGreaterThan(6);
-        Assertions.assertEquals(results, expected);
+
+        Assertions.assertEquals(0, new InsectManager().findAllWithNumOfLegsGreaterThan(6));
     }
 }
