@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
 
 @Getter
 public final class InsectManager {
-    private List<Insect> insects = new LinkedList<>();
+    private final List<Insect> insects = new LinkedList<>();
     public void addInsect(final Insect insect) {
         insects.add(insect);
     }
 
-    public void addInsects(final List<Insect> insects) {
-        this.insects.addAll(insects);
+    public void addInsects(final List<Insect> listInsects) {
+        this.insects.addAll(listInsects);
     }
 
-    public List<Insect> findAll(boolean isDangerous) {
+    public List<Insect> findAll(final boolean isDangerous) {
         return insects.stream()
                 .filter((insects) ->  insects.isDangerous() == isDangerous)
                 .collect(Collectors.toList());

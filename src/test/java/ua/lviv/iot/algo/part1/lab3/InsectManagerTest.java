@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class InsectManagerTest {
-    private InsectManager manager, managerWithDangerousInsects, managerWithoutDangerousInsects, emptyManager;
+    private InsectManager manager, managerWithDangerousInsects, managerWithoutDangerousInsects;
 
     @BeforeEach
     public void setUp() {
@@ -70,6 +70,6 @@ class InsectManagerTest {
     @Test
     public void testFindAllInsectsWithNumberOfLegsGreaterThanSixInEmptyList() {
 
-        Assertions.assertEquals(0, new InsectManager().findAllWithNumOfLegsGreaterThan(6));
+        Assertions.assertEquals(0, new InsectManager().findAllWithNumOfLegsGreaterThan(6).size());
     }
 }
