@@ -13,25 +13,20 @@ class ButterflyTest {
     }
 
     @Test
-    public void testButterflyToString() {
-        String expected = "Insect(name=Butterfly, numberOfLegs=6, hasWings=true, isDangerous=false, isSleeping=true)";
-        String actual = butterfly.toString();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
     public void testButterflyIsPoisonous() {
         Assertions.assertFalse(butterfly.isPoisonous());
     }
 
     @Test
     public void testButterflyCanHibernate() {
+
         butterfly.hibernate();
         Assertions.assertTrue(butterfly.isSleeping());
     }
 
     @Test
     public void testButterflyIsWakeUp() {
+
         butterfly.wakeUp();
         Assertions.assertFalse(butterfly.isSleeping());
     }
@@ -44,5 +39,21 @@ class ButterflyTest {
     @Test
     public void testButterflyCanSurviveOverWinter() {
         Assertions.assertTrue(butterfly.surviveOverWinter());
+    }
+
+    @Test
+    public void testGetHeaders() {
+
+        String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
+        Assertions.assertEquals(expected, butterfly.getHeaders());
+    }
+
+    @Test
+    public void testToCVS() {
+
+        String expected = "," + butterfly.getName() + ", " +
+                butterfly.getNumberOfLegs() + ", " + butterfly.isHasWings() +
+                ", " + butterfly.isDangerous() + ", " + butterfly.isSleeping();
+        Assertions.assertEquals(expected, butterfly.toCSV());
     }
 }

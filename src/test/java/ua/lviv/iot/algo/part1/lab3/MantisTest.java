@@ -13,25 +13,21 @@ class MantisTest {
     }
 
     @Test
-    public void testMantisToString() {
-        String expected = "Insect(name=Mantis, numberOfLegs=8, hasWings=false, isDangerous=false, isSleeping=false)";
-        String actual = mantis.toString();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
     public void testMantisIsPoisonous() {
         Assertions.assertFalse(mantis.isPoisonous());
     }
+
     @Test
 
     public void testMantisCanHibernate() {
+
         mantis.hibernate();
         Assertions.assertTrue(mantis.isSleeping());
     }
 
     @Test
     public void testMantisIsWakeUp() {
+
         mantis.wakeUp();
         Assertions.assertFalse(mantis.isSleeping());
     }
@@ -46,4 +42,19 @@ class MantisTest {
         Assertions.assertFalse(mantis.surviveOverWinter());
     }
 
+    @Test
+    public void testGetHeaders() {
+
+        String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
+        Assertions.assertEquals(expected, mantis.getHeaders());
+    }
+
+    @Test
+    public void testToCVS() {
+
+        String expected = "," + mantis.getName() + ", " +
+                mantis.getNumberOfLegs() + ", " + mantis.isHasWings() +
+                ", " + mantis.isDangerous() + ", " + mantis.isSleeping();
+        Assertions.assertEquals(expected, mantis.toCSV());
+    }
 }
