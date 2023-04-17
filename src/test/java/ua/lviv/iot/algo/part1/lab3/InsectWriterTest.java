@@ -17,8 +17,8 @@ class InsectWriterTest {
     @AfterAll
     public static void cleaning() {
 
-        File actualFile = new File("src/test/resources/fileInsects.csv");
-        File emptyFile = new File("src/test/resources/emptyFileInsect.csv");
+        File actualFile = new File("src\\test\\resources\\fileInsects.csv");
+        File emptyFile = new File("src\\test\\resources\\emptyFileInsect.csv");
 
         actualFile.delete();
         emptyFile.delete();
@@ -48,14 +48,14 @@ class InsectWriterTest {
         manager.addInsect(mantisSecond);
 
         writer = new InsectWriter();
-        writer.writeToFile(manager.getInsects(), "src/test/resources/fileInsects.csv");
+        writer.writeToFile(manager.getInsects(), "src\\test\\resources\\fileInsects.csv");
     }
 
     @Test
     public void testWriteToFile() throws IOException {
 
-        Path path1 = Paths.get("src/test/resources/expectedFileInsects.csv");
-        Path path2 = Paths.get("src/test/resources/fileInsects.csv");
+        Path path1 = Paths.get("src\\test\\resources\\expectedFileInsects.csv");
+        Path path2 = Paths.get("src\\test\\resources\\fileInsects.csv");
 
         Assertions.assertEquals(-1L, Files.mismatch(path1, path2));
     }
@@ -66,9 +66,9 @@ class InsectWriterTest {
         InsectManager emptyManager = new InsectManager();
         writer = new InsectWriter();
 
-        writer.writeToFile(emptyManager.getInsects(), "src/test/resources/emptyFileInsect.csv");
+        writer.writeToFile(emptyManager.getInsects(), "src\\test\\resources\\emptyFileInsect.csv");
 
-        reader = new BufferedReader(new FileReader("src/test/resources/emptyFileInsect.csv"));
+        reader = new BufferedReader(new FileReader("src\\test\\resources\\emptyFileInsect.csv"));
 
         while ((reader.readLine()) != null) {
 
@@ -79,7 +79,7 @@ class InsectWriterTest {
     @Test
     public void testIsPreviousFile() throws IOException {
 
-        reader = new BufferedReader(new FileReader("src/test/resources/fileInsects.csv"));
+        reader = new BufferedReader(new FileReader("src\\test\\resources\\fileInsects.csv"));
         Assertions.assertNotNull(reader);
     }
 }

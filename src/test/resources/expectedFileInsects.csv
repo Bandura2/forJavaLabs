@@ -1,20 +1,20 @@
+Mosquito
+,name, numberOfLegs, hasWings, isDangerous, isSleeping
+,Vasya, 4, true, false, false
+,Artur, 6, true, true, true
+
+Hornet
+,name, numberOfLegs, hasWings, isDangerous, isSleeping
+,Locky, 2, true, false, true
+,Sherlok, 4, true, true, false
+
 Butterfly
 ,name, numberOfLegs, hasWings, isDangerous, isSleeping
 ,Filename, 8, true, false, false
 ,Dinar, 6, true, false, true
 
-Hornet
-,name, numberOfLegs, hasWings, isDangerous, isSleeping
-,Sherlok, 4, true, true, false
-,Locky, 2, true, false, true
-
 Mantis
 ,name, numberOfLegs, hasWings, isDangerous, isSleeping
 ,Olena, 8, false, true, false
 ,Zoro, 2, false, true, true
-
-Mosquito
-,name, numberOfLegs, hasWings, isDangerous, isSleeping
-,Artur, 6, true, true, true
-,Vasya, 4, true, false, false
 
