@@ -11,22 +11,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 class InsectWriterTest {
-    InsectWriter writer;
-    BufferedReader reader;
+
+    private static final String PATH_TO_TEST_RESOURCES = "src\\test\\resources\\";
+    private static final String FILE_NAME = "fileInsects.csv";
+    private static final String EMPTY_FILE_NAME = "emptyFileInsect.csv";
+    private static final String EXPECTED_FILE_NAME = "expectedFileInsects.csv";
 
     @AfterAll
-    public static void cleaning() {
+    public static void clean() {
 
-        File actualFile = new File("src\\test\\resources\\fileInsects.csv");
-        File emptyFile = new File("src\\test\\resources\\emptyFileInsect.csv");
-
-        actualFile.delete();
-        emptyFile.delete();
+        new File(PATH_TO_TEST_RESOURCES + FILE_NAME).delete();
+        new File(PATH_TO_TEST_RESOURCES + EMPTY_FILE_NAME).delete();
     }
 
     @BeforeEach
     public void setUp() throws FileNotFoundException {
 
+        InsectManager emptyManager = new InsectManager();
         InsectManager manager = new InsectManager();
 
         Insect mosquitoFirst = new Mosquito("Vasya", 4, true, false, false);
@@ -47,15 +48,16 @@ class InsectWriterTest {
         manager.addInsect(mosquitoSecond);
         manager.addInsect(mantisSecond);
 
-        writer = new InsectWriter();
-        writer.writeToFile(manager.getInsects(), "src\\test\\resources\\fileInsects.csv");
+        InsectWriter writer = new InsectWriter();
+        writer.writeToFile(manager.getInsects(), PATH_TO_TEST_RESOURCES +  FILE_NAME);
+        writer.writeToFile(emptyManager.getInsects(), PATH_TO_TEST_RESOURCES + EMPTY_FILE_NAME);
     }
 
     @Test
     public void testWriteToFile() throws IOException {
 
-        Path path1 = Paths.get("src\\test\\resources\\expectedFileInsects.csv");
-        Path path2 = Paths.get("src\\test\\resources\\fileInsects.csv");
+        Path path1 = Paths.get(PATH_TO_TEST_RESOURCES + EXPECTED_FILE_NAME);
+        Path path2 = Paths.get(PATH_TO_TEST_RESOURCES + FILE_NAME);
 
         Assertions.assertEquals(-1L, Files.mismatch(path1, path2));
     }
@@ -63,23 +65,8 @@ class InsectWriterTest {
     @Test
     public void testWriteToFileIsEmpty() throws IOException {
 
-        InsectManager emptyManager = new InsectManager();
-        writer = new InsectWriter();
-
-        writer.writeToFile(emptyManager.getInsects(), "src\\test\\resources\\emptyFileInsect.csv");
-
-        reader = new BufferedReader(new FileReader("src\\test\\resources\\emptyFileInsect.csv"));
-
-        while ((reader.readLine()) != null) {
-
-            Assertions.assertNull(reader.readLine());
-        }
-    }
-
-    @Test
-    public void testIsPreviousFile() throws IOException {
-
-        reader = new BufferedReader(new FileReader("src\\test\\resources\\fileInsects.csv"));
-        Assertions.assertNotNull(reader);
+        BufferedReader reader = new BufferedReader(new FileReader(PATH_TO_TEST_RESOURCES + EMPTY_FILE_NAME));
+        Assertions.assertNull(reader.readLine());
+        reader.close();
     }
 }

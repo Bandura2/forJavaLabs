@@ -2,29 +2,34 @@ package ua.lviv.iot.algo.part1.lab3;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class InsectWriter {
 
-
-    public void writeToFile(final List<Insect> insect,
+    public void writeToFile(final List<Insect> insects,
                             final String fileNam) throws FileNotFoundException {
 
         PrintWriter writer = new PrintWriter(fileNam);
+        Map<String, Boolean> classMap = new HashMap<>();
 
-        for (int i = 0; i < insect.size(); i++) {
+        insects.sort(Comparator.comparing(insect -> insect.getClass().getSimpleName()));
 
-            writer.println(insect.get(i).getClass().getSimpleName());
-            writer.println(insect.get(i).getHeaders());
-            writer.println(insect.get(i).toCSV());
+        for (Insect insect : insects) {
+            String nameTemporaryClass = insect.getClass().getSimpleName();
 
-            for (int j = i + 1; j < insect.size(); j++) {
-                if ((insect.get(i).getClass()) == (insect.get(j).getClass())) {
+            if (!classMap.containsKey(nameTemporaryClass)) {
 
-                    writer.println(insect.get(j).toCSV() + "\n");
-                    insect.remove(j);
-                    j--;
-                }
+                writer.println();
+                writer.println(nameTemporaryClass);
+                writer.println(insect.getHeaders());
+
+                classMap.put(nameTemporaryClass, true);
+            }
+            if (classMap.containsKey(nameTemporaryClass)) {
+                writer.println(insect.toCSV());
             }
         }
         writer.close();
