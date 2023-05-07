@@ -1,8 +1,10 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public abstract class Insect {
@@ -13,7 +15,7 @@ public abstract class Insect {
     private boolean isDangerous = false;
     private boolean isSleeping = false;
 
-    public boolean isPoisonous() {
+    public boolean canPoisonous() {
         return isDangerous;
     }
 
@@ -35,6 +37,7 @@ public abstract class Insect {
 
     public String toCSV() {
         return "," + name + ", " + numberOfLegs + ", "
-                + hasWings + ", " + isDangerous + ", " + isSleeping;
+                + hasWings + ", " + isDangerous + ", "
+                + isSleeping;
     }
 }

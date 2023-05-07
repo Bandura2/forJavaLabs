@@ -1,8 +1,8 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.model;
 
-public final class Mantis extends Insect {
+public final class Hornet extends Insect {
 
-    public Mantis(final String name, final int numberOfLegs,
+    public Hornet(final String name, final int numberOfLegs,
                   final boolean hasWings, final boolean isDangerous,
                   final boolean isSleeping) {
         super(name, numberOfLegs, hasWings, isDangerous, isSleeping);
