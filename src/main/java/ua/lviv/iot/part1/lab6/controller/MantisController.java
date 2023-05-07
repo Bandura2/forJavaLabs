@@ -28,14 +28,14 @@ public class MantisController {
     @PostMapping
     public ResponseEntity<Mantis> createMantis(final @RequestBody Mantis mantis) {
 
-        mantisService.postMantisToMap(mantis);
+        mantisService.postMantis(mantis);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Mantis> getMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (!mantisService.isMapContainId(mantisId)) {
+        if (mantisService.isEmptyId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -46,12 +46,12 @@ public class MantisController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Mantis> removeMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (!mantisService.isMapContainId(mantisId)) {
+        if (mantisService.isEmptyId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        mantisService.removeMantisWithMapForId(mantisId);
+        mantisService.removeMantisForId(mantisId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -70,7 +70,7 @@ public class MantisController {
     public ResponseEntity<Mantis> updateMantis(final @RequestBody Mantis mantis,
                                                final @PathVariable("id") Integer mantisId) {
 
-        if (!mantisService.isMapContainId(mantisId)) {
+        if (mantisService.isEmptyId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

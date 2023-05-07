@@ -3,59 +3,44 @@ package ua.lviv.iot.part1.lab6.service;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ua.lviv.iot.part1.lab6.model.Mantis;
+import ua.lviv.iot.part1.lab6.reposistory.MantisReposistory;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @Scope("singleton")
 public class MantisService {
 
-    private final Map<Integer, Mantis> mapOfMantis = new HashMap<>();
-    private final AtomicInteger availableId = new AtomicInteger();
+    private final MantisReposistory mantisReposistory = new MantisReposistory();
 
-    public Integer getNextAvailableId() {
-
-        availableId.set(1);
-
-        while (mapOfMantis.containsKey(availableId.get())) {
-
-            availableId.incrementAndGet();
-        }
-        return availableId.get();
-    }
 
     public Mantis getMantisWithMapForId(final Integer mantisId) {
-        return mapOfMantis.get(mantisId);
+        return mantisReposistory.getById(mantisId);
     }
 
-    public void postMantisToMap(final Mantis mantis) {
+    public void postMantis(final Mantis mantis) {
 
-        mantis.setId(getNextAvailableId());
-        mapOfMantis.put(mantis.getId(), mantis);
+        mantisReposistory.postMantisToMap(mantis);
     }
 
-    public void removeMantisWithMapForId(final Integer mantisId) {
-        mapOfMantis.remove(mantisId);
+    public void removeMantisForId(final Integer mantisId) {
+        mantisReposistory.removeMantisWithMapForId(mantisId);
     }
 
     public List<Mantis> getListOfMantis() {
 
-        return new LinkedList<>(mapOfMantis.values());
+        return mantisReposistory.getListOfMantisWithMap();
     }
 
-    public boolean isMapContainId(final Integer mantisId) {
-        return mapOfMantis.containsKey(mantisId);
+    public boolean isEmptyId(final Integer mantisId) {
+        return !mantisReposistory.isMapContainedId(mantisId);
     }
 
     public void putMantis(final Integer mantisId, final Mantis mantis) {
-        mapOfMantis.put(mantisId, mantis);
+        mantisReposistory.updateMantisForId(mantisId, mantis);
     }
 
     public boolean isMapEmpty() {
-        return mapOfMantis.isEmpty();
+        return mantisReposistory.isMapContainedAnyMantis();
     }
 }
