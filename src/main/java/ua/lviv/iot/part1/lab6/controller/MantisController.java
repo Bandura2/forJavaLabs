@@ -26,28 +26,44 @@ public class MantisController {
     private MantisService mantisService;
 
     @PostMapping
-    public Mantis createMantis(final @RequestBody Mantis mantis) {
+    public ResponseEntity<Mantis> createMantis(final @RequestBody Mantis mantis) {
 
-        mantisService.postMantisToMapWithId(mantis);
-        return mantis;
+        mantisService.postMantisToMap(mantis);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping(path = "/{id}")
-    public Mantis getMantis(final @PathVariable("id") Integer mantisId) {
+    public ResponseEntity<Mantis> getMantis(final @PathVariable("id") Integer mantisId) {
 
-        return mantisService.getMantisWithMapForId(mantisId);
+        if (!mantisService.isMapContainId(mantisId)) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return new ResponseEntity<>(mantisService.getMantisWithMapForId(mantisId), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
-    public void removeMantis(final @PathVariable("id") Integer mantisId) {
+    public ResponseEntity<Mantis> removeMantis(final @PathVariable("id") Integer mantisId) {
+
+        if (!mantisService.isMapContainId(mantisId)) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
         mantisService.removeMantisWithMapForId(mantisId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping
-    public List<Mantis> getAllMantis() {
+    public ResponseEntity<List<Mantis>> getAllMantis() {
 
-        return mantisService.getListOfMantis();
+        if (mantisService.isMapEmpty()) {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return new ResponseEntity<>(mantisService.getListOfMantis(), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{id}")
@@ -64,6 +80,4 @@ public class MantisController {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-
 }

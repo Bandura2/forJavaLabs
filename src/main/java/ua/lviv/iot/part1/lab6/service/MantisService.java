@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Scope("singleton")
 public class MantisService {
 
-    private Map<Integer, Mantis> mapOfMantis = new HashMap<>();
-    private AtomicInteger availableId = new AtomicInteger();
+    private final Map<Integer, Mantis> mapOfMantis = new HashMap<>();
+    private final AtomicInteger availableId = new AtomicInteger();
 
     public Integer getNextAvailableId() {
 
@@ -28,28 +28,34 @@ public class MantisService {
         return availableId.get();
     }
 
-    public Mantis getMantisWithMapForId(Integer mantisId) {
+    public Mantis getMantisWithMapForId(final Integer mantisId) {
         return mapOfMantis.get(mantisId);
     }
 
-    public void postMantisToMapWithId(Mantis mantis) {
+    public void postMantisToMap(final Mantis mantis) {
+
         mantis.setId(getNextAvailableId());
         mapOfMantis.put(mantis.getId(), mantis);
     }
 
-    public void removeMantisWithMapForId(Integer mantisId) {
+    public void removeMantisWithMapForId(final Integer mantisId) {
         mapOfMantis.remove(mantisId);
     }
 
     public List<Mantis> getListOfMantis() {
+
         return new LinkedList<>(mapOfMantis.values());
     }
 
-    public boolean isMapContainId(Integer mantisId) {
+    public boolean isMapContainId(final Integer mantisId) {
         return mapOfMantis.containsKey(mantisId);
     }
 
-    public void putMantis(Integer mantisId, Mantis mantis) {
+    public void putMantis(final Integer mantisId, final Mantis mantis) {
         mapOfMantis.put(mantisId, mantis);
+    }
+
+    public boolean isMapEmpty() {
+        return mapOfMantis.isEmpty();
     }
 }
