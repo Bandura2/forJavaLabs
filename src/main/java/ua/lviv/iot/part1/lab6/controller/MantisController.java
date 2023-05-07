@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import ua.lviv.iot.part1.lab6.model.Mantis;
 import ua.lviv.iot.part1.lab6.service.MantisService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/mantises")
@@ -46,9 +48,9 @@ public class MantisController {
     }
 
     @GetMapping
-    public Map<Integer, Mantis> getAllMantis() {
-
-        return mantisService.getMapOfMantis();
+    public List<Mantis> getAllMantis() {
+        
+        return new ArrayList<Mantis>(mantisService.getMapOfMantis().values());
     }
 
     @PutMapping(path = "/update/{id}")
