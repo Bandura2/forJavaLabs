@@ -13,25 +13,20 @@ class HornetTest {
     }
 
     @Test
-    public void testHornetToString() {
-        String expected = "Insect(name=Hornet, numberOfLegs=8, hasWings=true, isDangerous=true, isSleeping=false)";
-        String actual = hornet.toString();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
     public void testHornetIsPoisonous() {
         Assertions.assertTrue(hornet.isPoisonous());
     }
 
     @Test
     public void testHornetCanHibernate() {
+
         hornet.hibernate();
         Assertions.assertTrue(hornet.isSleeping());
     }
 
     @Test
     public void testHornetIsWakeUp() {
+
         hornet.wakeUp();
         Assertions.assertFalse(hornet.isSleeping());
     }
@@ -44,5 +39,21 @@ class HornetTest {
     @Test
     public void testHornetCanNotSurviveOverWinter() {
         Assertions.assertFalse(hornet.surviveOverWinter());
+    }
+
+    @Test
+    public void testGetHeaders() {
+
+        String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
+        Assertions.assertEquals(expected, hornet.getHeaders());
+    }
+
+    @Test
+    public void testToCVS() {
+
+        String expected = "," + hornet.getName() + ", " + hornet.getNumberOfLegs()
+                + ", " + hornet.isHasWings() + ", " + hornet.isDangerous()
+                + ", " + hornet.isSleeping();
+        Assertions.assertEquals(expected, hornet.toCSV());
     }
 }
