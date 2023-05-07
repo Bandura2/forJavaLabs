@@ -18,7 +18,6 @@ import ua.lviv.iot.part1.lab6.service.MantisService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("/mantises")
 @RestController
@@ -27,7 +26,7 @@ public class MantisController {
     @Autowired
     private MantisService mantisService;
 
-    @PostMapping(path = "/create")
+    @PostMapping
     public Mantis createMantis(final @RequestBody Mantis mantis) {
 
         mantis.setId(mantisService.getNextAvailableId());
@@ -35,13 +34,13 @@ public class MantisController {
         return mantis;
     }
 
-    @GetMapping(path = "/get/{id}")
+    @GetMapping(path = "/{id}")
     public Mantis getMantis(final @PathVariable("id") Integer mantisId) {
 
         return mantisService.getMapOfMantis().get(mantisId);
     }
 
-    @DeleteMapping(path = "/remove/{id}")
+    @DeleteMapping(path = "/{id}")
     public void removeMantis(final @PathVariable("id") Integer mantisId) {
 
         mantisService.getMapOfMantis().remove(mantisId);
@@ -53,7 +52,7 @@ public class MantisController {
         return new ArrayList<Mantis>(mantisService.getMapOfMantis().values());
     }
 
-    @PutMapping(path = "/update/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<Mantis> updateMantis(final @RequestBody Mantis mantis,
                                                final @PathVariable("id") Integer mantisId) {
 
