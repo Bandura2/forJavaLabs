@@ -49,7 +49,7 @@ public class MantisController {
 
     @GetMapping
     public List<Mantis> getAllMantis() {
-        
+
         return new ArrayList<Mantis>(mantisService.getMapOfMantis().values());
     }
 
