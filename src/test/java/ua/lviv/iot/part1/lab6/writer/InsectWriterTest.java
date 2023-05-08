@@ -1,9 +1,11 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.writer;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ua.lviv.iot.part1.lab6.manager.InsectManager;
+import ua.lviv.iot.part1.lab6.model.*;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -49,7 +51,7 @@ class InsectWriterTest {
         manager.addInsect(mantisSecond);
 
         InsectWriter writer = new InsectWriter();
-        writer.writeToFile(manager.getInsects(), PATH_TO_TEST_RESOURCES +  FILE_NAME);
+        writer.writeToFile(manager.getInsects(), PATH_TO_TEST_RESOURCES + FILE_NAME);
         writer.writeToFile(emptyManager.getInsects(), PATH_TO_TEST_RESOURCES + EMPTY_FILE_NAME);
     }
 

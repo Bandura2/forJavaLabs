@@ -1,4 +1,6 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.writer;
+
+import ua.lviv.iot.part1.lab6.model.Insect;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -24,7 +26,7 @@ public final class InsectWriter {
 
                 writer.println();
                 writer.println(nameTemporaryClass);
-                writer.println(insect.getHeaders());
+                writer.println(insect.reurnHeaders());
 
                 classMap.put(nameTemporaryClass, true);
             }

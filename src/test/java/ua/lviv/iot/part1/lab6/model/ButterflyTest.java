@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ class ButterflyTest {
 
     @Test
     public void testButterflyIsPoisonous() {
-        Assertions.assertFalse(butterfly.isPoisonous());
+        Assertions.assertFalse(butterfly.canPoisonous());
     }
 
     @Test
@@ -45,7 +45,7 @@ class ButterflyTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, butterfly.getHeaders());
+        Assertions.assertEquals(expected, butterfly.reurnHeaders());
     }
 
     @Test

@@ -1,11 +1,11 @@
-package ua.lviv.iot.algo.part1.lab3;
+package ua.lviv.iot.part1.lab6.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MantisTest {
-    private Insect mantis;
+    private Mantis mantis;
 
     @BeforeEach
     public void setUp() {
@@ -14,7 +14,7 @@ class MantisTest {
 
     @Test
     public void testMantisIsPoisonous() {
-        Assertions.assertFalse(mantis.isPoisonous());
+        Assertions.assertFalse(mantis.canPoisonous());
     }
 
     @Test
@@ -22,6 +22,7 @@ class MantisTest {
     public void testMantisCanHibernate() {
 
         mantis.hibernate();
+        System.out.println(mantis.isSleeping());
         Assertions.assertTrue(mantis.isSleeping());
     }
 
@@ -46,15 +47,13 @@ class MantisTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, mantis.getHeaders());
+        Assertions.assertEquals(expected, mantis.reurnHeaders());
     }
 
     @Test
     public void testToCVS() {
 
-        String expected = "," + mantis.getName() + ", " +
-                mantis.getNumberOfLegs() + ", " + mantis.isHasWings() +
-                ", " + mantis.isDangerous() + ", " + mantis.isSleeping();
+        String expected = "," + mantis.getName() + ", " + mantis.getNumberOfLegs() + ", " + mantis.isHasWings() + ", " + mantis.isDangerous() + ", " + mantis.isSleeping();
         Assertions.assertEquals(expected, mantis.toCSV());
     }
 }
