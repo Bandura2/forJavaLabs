@@ -1,9 +1,10 @@
 package ua.lviv.iot.part1.lab6.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import ua.lviv.iot.part1.lab6.model.Mantis;
-import ua.lviv.iot.part1.lab6.reposistory.MantisReposistory;
+import ua.lviv.iot.part1.lab6.repository.MantisRepository;
 
 import java.util.List;
 
@@ -11,36 +12,35 @@ import java.util.List;
 @Scope("singleton")
 public class MantisService {
 
-    private final MantisReposistory mantisReposistory = new MantisReposistory();
+    @Autowired
+    private MantisRepository mantisRepository;
 
-
-    public Mantis getMantisWithMapForId(final Integer mantisId) {
-        return mantisReposistory.getById(mantisId);
+    public Mantis getMantisForId(final Integer mantisId) {
+        return mantisRepository.getById(mantisId);
     }
 
-    public void postMantis(final Mantis mantis) {
-
-        mantisReposistory.postMantisToMap(mantis);
+    public void createMantis(final Mantis mantis) {
+        mantisRepository.addMantis(mantis);
     }
 
     public void removeMantisForId(final Integer mantisId) {
-        mantisReposistory.removeMantisWithMapForId(mantisId);
+        mantisRepository.removeById(mantisId);
     }
 
     public List<Mantis> getListOfMantis() {
-
-        return mantisReposistory.getListOfMantisWithMap();
+        return mantisRepository.getListOfMantis();
     }
 
-    public boolean isEmptyId(final Integer mantisId) {
-        return !mantisReposistory.isMapContainedId(mantisId);
+    public boolean isNotMantisWithId(final Integer mantisId) {
+        return !mantisRepository.exists(mantisId);
     }
 
-    public void putMantis(final Integer mantisId, final Mantis mantis) {
-        mantisReposistory.updateMantisForId(mantisId, mantis);
+    public void updateMantis(final Integer mantisId, final Mantis mantis) {
+        mantis.setId(mantisId);
+        mantisRepository.update(mantis);
     }
 
-    public boolean isMapEmpty() {
-        return mantisReposistory.isMapContainedAnyMantis();
+    public boolean isNotAnyMantises() {
+        return mantisRepository.hasNotAnyMantis();
     }
 }

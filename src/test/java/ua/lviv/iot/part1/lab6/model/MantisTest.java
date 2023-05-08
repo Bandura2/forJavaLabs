@@ -47,7 +47,7 @@ class MantisTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, mantis.getHeaders());
+        Assertions.assertEquals(expected, mantis.reurnHeaders());
     }
 
     @Test

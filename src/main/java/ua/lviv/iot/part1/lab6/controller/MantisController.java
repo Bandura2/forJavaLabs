@@ -28,25 +28,25 @@ public class MantisController {
     @PostMapping
     public ResponseEntity<Mantis> createMantis(final @RequestBody Mantis mantis) {
 
-        mantisService.postMantis(mantis);
+        mantisService.createMantis(mantis);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Mantis> getMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isEmptyId(mantisId)) {
+        if (mantisService.isNotMantisWithId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        return new ResponseEntity<>(mantisService.getMantisWithMapForId(mantisId), HttpStatus.OK);
+        return new ResponseEntity<>(mantisService.getMantisForId(mantisId), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Mantis> removeMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isEmptyId(mantisId)) {
+        if (mantisService.isNotMantisWithId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -58,7 +58,7 @@ public class MantisController {
     @GetMapping
     public ResponseEntity<List<Mantis>> getAllMantis() {
 
-        if (mantisService.isMapEmpty()) {
+        if (mantisService.isNotAnyMantises()) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -70,13 +70,13 @@ public class MantisController {
     public ResponseEntity<Mantis> updateMantis(final @RequestBody Mantis mantis,
                                                final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isEmptyId(mantisId)) {
+        if (mantisService.isNotMantisWithId(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         mantis.setId(mantisId);
-        mantisService.putMantis(mantisId, mantis);
+        mantisService.updateMantis(mantisId, mantis);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }

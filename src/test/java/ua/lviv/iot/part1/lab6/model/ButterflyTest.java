@@ -45,7 +45,7 @@ class ButterflyTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, butterfly.getHeaders());
+        Assertions.assertEquals(expected, butterfly.reurnHeaders());
     }
 
     @Test

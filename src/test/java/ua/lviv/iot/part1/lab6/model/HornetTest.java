@@ -45,7 +45,7 @@ class HornetTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, hornet.getHeaders());
+        Assertions.assertEquals(expected, hornet.reurnHeaders());
     }
 
     @Test

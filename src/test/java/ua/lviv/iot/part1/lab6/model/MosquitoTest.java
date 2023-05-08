@@ -45,7 +45,7 @@ class MosquitoTest {
     public void testGetHeaders() {
 
         String expected = ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
-        Assertions.assertEquals(expected, mosquito.getHeaders());
+        Assertions.assertEquals(expected, mosquito.reurnHeaders());
     }
 
     @Test

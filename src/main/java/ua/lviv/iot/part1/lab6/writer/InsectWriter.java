@@ -26,7 +26,7 @@ public final class InsectWriter {
 
                 writer.println();
                 writer.println(nameTemporaryClass);
-                writer.println(insect.getHeaders());
+                writer.println(insect.reurnHeaders());
 
                 classMap.put(nameTemporaryClass, true);
             }

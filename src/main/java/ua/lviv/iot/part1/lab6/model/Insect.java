@@ -31,7 +31,7 @@ public abstract class Insect {
 
     public abstract boolean surviveOverWinter();
 
-    public String getHeaders() {
+    public String reurnHeaders() {
         return ",name, numberOfLegs, hasWings, isDangerous, isSleeping";
     }
 
