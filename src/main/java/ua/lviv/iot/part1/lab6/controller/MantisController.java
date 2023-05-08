@@ -35,7 +35,7 @@ public class MantisController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Mantis> getMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isNotMantisWithId(mantisId)) {
+        if (mantisService.notExists(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -46,7 +46,7 @@ public class MantisController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Mantis> removeMantis(final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isNotMantisWithId(mantisId)) {
+        if (mantisService.notExists(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -70,7 +70,7 @@ public class MantisController {
     public ResponseEntity<Mantis> updateMantis(final @RequestBody Mantis mantis,
                                                final @PathVariable("id") Integer mantisId) {
 
-        if (mantisService.isNotMantisWithId(mantisId)) {
+        if (mantisService.notExists(mantisId)) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

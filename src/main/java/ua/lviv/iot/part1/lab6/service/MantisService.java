@@ -31,7 +31,7 @@ public class MantisService {
         return mantisRepository.getListOfMantis();
     }
 
-    public boolean isNotMantisWithId(final Integer mantisId) {
+    public boolean notExists(final Integer mantisId) {
         return !mantisRepository.exists(mantisId);
     }
 
